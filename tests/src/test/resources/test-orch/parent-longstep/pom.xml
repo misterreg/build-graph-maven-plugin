@@ -28,7 +28,7 @@
                     </sequential>
                   </macrodef>
 		  <echotimestamp /> 
-                  <sleep seconds="2"/>
+                  <sleep seconds="1"/>
 		  <echotimestamp /> 
                 </target>
               </configuration>
