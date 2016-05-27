@@ -14,7 +14,7 @@ Example launch:
 ```
 mvn -T 4 -fae clean package
 ```
-
+Write this in your aggregator pom.xml
 ```xml
 <plugin>
   <groupId>com.github.misterreg.mavenplugins</groupId>

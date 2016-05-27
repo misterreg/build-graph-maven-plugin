@@ -71,19 +71,17 @@ public class BuildGraphDrawer {
     return result;
   }
 
-  private Logger LOG = Logger.getLogger(BuildGraphDrawer.class.getName());
+  private Logger LOG = Logger.getLogger("build-graph-maven-plugin");
   
   private Map<String, ProjectBuildInfo> getBuildInfoFromSession (MavenSession session) throws MojoExecutionException {
     Map<String, ProjectBuildInfo> result = new HashMap<String, ProjectBuildInfo>();
     MavenExecutionResult er = session.getResult();
-    LOG.info("gathering information projects from reactor:");
     for (MavenProject prj : session.getProjects()) {
       String key = maskHelper.getProjectKey(prj);
       LOG.info("gathering information about project " + key + " from reactor");
       ProjectBuildInfo pbInfo = new ProjectBuildInfo(prj, er);
       result.put(key, pbInfo);
     }
-    LOG.info("gathering ended");
     return result;
   }
   
@@ -97,7 +95,7 @@ public class BuildGraphDrawer {
     for (MavenProject prj : session.getProjects()) {
       String key = maskHelper.getProjectKey(prj);
       if (!excludedProjectsSet.contains(key)) {
-        LOG.info("adding vertex to graph " + key);
+//        LOG.info("adding vertex to graph " + key);
         g.addVertex(key);
       }
     }
@@ -107,13 +105,13 @@ public class BuildGraphDrawer {
       String prjKey = maskHelper.getProjectKey(prj);
       for (Dependency d : prj.getDependencies()) {
         String depKey = maskHelper.getDependencyKey(d);
-        LOG.info("adding dependency to graph " + prjKey + " -> " + depKey);
+//        LOG.info("adding dependency to graph " + prjKey + " -> " + depKey);
         if (!g.containsVertex(depKey)) {
-          LOG.info("dependency excluded due to vertex " + depKey + " not found");
+//          LOG.info("dependency excluded due to vertex " + depKey + " not found");
           continue;
         }
         if (!g.containsVertex(prjKey)) {
-          LOG.info("dependency excluded due to vertex " + prjKey + " not found");
+//          LOG.info("dependency excluded due to vertex " + prjKey + " not found");
           continue;
         }
         g.addEdge(depKey, prjKey);
