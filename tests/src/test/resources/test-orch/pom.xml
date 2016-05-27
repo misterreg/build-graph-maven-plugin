@@ -8,7 +8,7 @@
   <properties>
     <plugin.groupId>com.github.misterreg.mavenplugins</plugin.groupId>
     <plugin.artifactId>build-graph-maven-plugin</plugin.artifactId>
-    <plugin.version>0.0.1-SNAPSHOT</plugin.version>
+    <plugin.version>0.0.3-SNAPSHOT</plugin.version>
   </properties>
   <profiles>
     <profile>
