@@ -1,12 +1,12 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
          xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>reg</groupId>
+  <groupId>com.github.misterreg.mavenplugins</groupId>
   <artifactId>aggregator</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <plugin.groupId>reg.mavenplugins</plugin.groupId>
+    <plugin.groupId>com.github.misterreg.mavenplugins</plugin.groupId>
     <plugin.artifactId>build-graph-maven-plugin</plugin.artifactId>
     <plugin.version>0.0.1-SNAPSHOT</plugin.version>
   </properties>
@@ -258,8 +258,8 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>reg</groupId>
-        <artifactId>build-graph-maven-plugin</artifactId>
+        <groupId>${plugin.groupId}</groupId>
+        <artifactId>${plugin.artifactId}</artifactId>
       </plugin>
     </plugins>
   </build>

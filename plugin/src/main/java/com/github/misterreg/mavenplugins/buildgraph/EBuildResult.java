@@ -1,4 +1,4 @@
-package reg;
+package com.github.misterreg.mavenplugins.buildgraph;
 
 public enum EBuildResult {
   SUCCESS ("DDFFDD"), 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package reg;
+package com.github.misterreg.mavenplugins.buildgraph.tests;
 
 import java.io.File;
 import java.util.Arrays;
@@ -39,19 +39,20 @@ public class SimpleTest {
   Logger LOG = Logger.getLogger(SimpleTest.class.getName());
   String[] tests = new String[] {
       "testBasic", 
-      /*"testSuccess", 
+      "testSuccess", 
       "testExclude", 
       "testMask", 
       "testVertical", 
-      "testScale"*/
+      "testScale"
       };
   
-  private void invoke(InvocationRequest request) {
+  private void invoke(InvocationRequest request, File dir) {
     try {
       InvocationOutputHandler outputHandler = new SystemOutHandler();
       Invoker invoker = new DefaultInvoker();
       invoker.setOutputHandler(outputHandler);
       invoker.setErrorHandler(outputHandler);
+      invoker.setWorkingDirectory(dir);
       InvocationResult result = invoker.execute(request);
       if (result.getExitCode() != 0) {
         LOG.info("mvn execution error");
@@ -64,8 +65,7 @@ public class SimpleTest {
   
   @Test
   public void test1() throws Exception {
-    // File pom = this.getTestFile("src/test/resources/test-orch/pom.xml");
-    File dir = new File("src/test/resources/test-orch");
+    File dir = new File("target/test-classes/test-orch");
     File pom = new File(dir, "pom.xml");
     Assert.assertNotNull(pom);
     Assert.assertTrue(pom.exists());
@@ -73,21 +73,24 @@ public class SimpleTest {
     request.setPomFile(pom);
     request.setGoals(Arrays.asList("clean"));
     request.setThreads("4");
-    request.setDebug(true);
-    request.setBaseDirectory(dir);
-    invoke(request);
+    request.setDebug(false);
+    invoke(request, dir);
     
     for (String test : tests) {
-      InvocationRequest request2 = new DefaultInvocationRequest();
-      request2.setPomFile(pom);
-      request2.setGoals(Arrays.asList("clean"));
-      request2.setThreads("4");
-      request2.setDebug(true);
-      request2.setBaseDirectory(dir);
+      request.setPomFile(pom);
+      request.setGoals(Arrays.asList("clean"));
+      request.setThreads("4");
+      request.setDebug(true);
+      request.setBaseDirectory(dir);
 
-      request2.setGoals(Arrays.asList("package"));
-      request2.setProfiles(Arrays.asList(test));
-      invoke(request2);
+      request.setGoals(Arrays.asList("package"));
+      request.setProfiles(Arrays.asList(test));
+      invoke(request, dir);
     }
+    LOG.info("Look at " + dir.getAbsolutePath());
+    for (String test : tests) {
+      LOG.info("check " + test + ".png");
+    }    
+    LOG.info("Bye!");
   }
 }

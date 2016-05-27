@@ -1,4 +1,4 @@
-package reg;
+package com.github.misterreg.mavenplugins.buildgraph;
 
 import org.apache.maven.model.Dependency;
 import org.apache.maven.project.MavenProject;

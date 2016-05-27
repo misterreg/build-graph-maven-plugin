@@ -1,4 +1,4 @@
-package reg;
+package com.github.misterreg.mavenplugins.buildgraph;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -166,17 +166,16 @@ public class BuildGraphDrawer {
   private void writePNGFile (mxGraphComponent jg, File f) {
     FileOutputStream outputStream = null;
     try {
+      LOG.info("writing png file to " + f.getAbsolutePath());
       BufferedImage image = mxCellRenderer.createBufferedImage(jg.getGraph(), null, pngScale, Color.WHITE, jg.isAntiAlias(), null, jg.getCanvas());
       mxPngEncodeParam param = mxPngEncodeParam.getDefaultEncodeParam(image);
       //param.setCompressedText(new String[] { "mxGraphModel", erXmlString });
 
       outputStream = new FileOutputStream(f);
       mxPngImageEncoder encoder = new mxPngImageEncoder(outputStream, param);
-
       if (image != null) {
           encoder.encode(image);
       }
-
     } catch (IOException e) {
       LOG.info(e.getMessage());
     } finally {
@@ -185,5 +184,6 @@ public class BuildGraphDrawer {
       } catch (Exception ex) {
       }
     }
+    LOG.info("total file size " + f.length() + " bytes");
   }
 }

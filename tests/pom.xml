@@ -5,7 +5,7 @@
   <groupId>com.github.misterreg.mavenplugins</groupId>
   <artifactId>tests</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
 
   <dependencies>
     <dependency>
@@ -13,14 +13,14 @@
       <artifactId>maven-plugin-api</artifactId>
       <version>3.0</version>
     </dependency>
- 
+
     <!-- dependencies to annotations -->
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
       <artifactId>maven-plugin-annotations</artifactId>
       <version>3.4</version>
       <scope>provided</scope>
-    </dependency>    
+    </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
@@ -43,10 +43,10 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>org.apache.maven.shared</groupId>
-        <artifactId>maven-invoker</artifactId>
-        <version>2.2</version>
-        <scope>test</scope>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-invoker</artifactId>
+      <version>2.2</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>
@@ -56,6 +56,18 @@
         <artifactId>maven-deploy-plugin</artifactId>
         <configuration>
           <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
     </plugins>

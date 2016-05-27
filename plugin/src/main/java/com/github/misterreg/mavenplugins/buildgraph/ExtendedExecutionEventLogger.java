@@ -1,4 +1,4 @@
-package reg;
+package com.github.misterreg.mavenplugins.buildgraph;
 
 import org.apache.maven.cli.ExecutionEventLogger;
 import org.apache.maven.execution.ExecutionEvent;
