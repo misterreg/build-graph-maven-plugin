@@ -3,7 +3,7 @@
 
   <groupId>com.github.misterreg.mavenplugins</groupId>
   <artifactId>build-graph-maven-plugin</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.2</version>
   <packaging>maven-plugin</packaging>
 
   <name>BuildGraph maven plugin</name>
